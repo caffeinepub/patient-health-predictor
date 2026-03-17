@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0.97 0.008 85;
+    --foreground: 0.16 0.025 155;
+    --card: 0.99 0.004 85;
+    --card-foreground: 0.16 0.025 155;
+    --popover: 0.99 0.004 85;
+    --popover-foreground: 0.16 0.025 155;
+    --primary: 0.38 0.1 155;
+    --primary-foreground: 0.97 0.004 85;
+    --secondary: 0.93 0.015 85;
+    --secondary-foreground: 0.28 0.06 155;
+    --muted: 0.93 0.012 85;
+    --muted-foreground: 0.52 0.03 155;
+    --accent: 0.56 0.14 185;
+    --accent-foreground: 0.97 0.004 85;
+    --destructive: 0.52 0.2 22;
+    --destructive-foreground: 0.97 0.004 85;
+    --success: 0.52 0.16 145;
+    --success-foreground: 0.97 0.004 85;
+    --warning: 0.62 0.16 72;
+    --warning-foreground: 0.16 0.025 85;
+    --border: 0.88 0.018 155;
+    --input: 0.88 0.018 155;
+    --ring: 0.38 0.1 155;
+    --radius: 0.75rem;
+    --chart-1: 0.52 0.16 145;
+    --chart-2: 0.56 0.14 185;
+    --chart-3: 0.62 0.16 72;
+    --chart-4: 0.52 0.2 22;
+    --chart-5: 0.38 0.1 155;
+    --sidebar: 0.22 0.065 158;
+    --sidebar-foreground: 0.92 0.018 85;
+    --sidebar-primary: 0.68 0.14 185;
+    --sidebar-primary-foreground: 0.97 0.004 85;
+    --sidebar-accent: 0.3 0.08 158;
+    --sidebar-accent-foreground: 0.92 0.018 85;
+    --sidebar-border: 0.3 0.06 155;
+    --sidebar-ring: 0.56 0.14 185;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: "DM Serif Display", serif;
+  }
+}
+
+@layer utilities {
+  .text-success {
+    color: oklch(var(--success));
+  }
+  .bg-success {
+    background-color: oklch(var(--success));
+  }
+  .text-success-foreground {
+    color: oklch(var(--success-foreground));
+  }
+  .bg-warning {
+    background-color: oklch(var(--warning));
+  }
+  .text-warning {
+    color: oklch(var(--warning));
+  }
+  .text-warning-dark {
+    color: oklch(0.38 0.12 72);
+  }
+  .risk-low {
+    @apply bg-emerald-50 text-emerald-800 border border-emerald-200;
+  }
+  .risk-medium {
+    @apply bg-amber-50 text-amber-800 border border-amber-200;
+  }
+  .risk-high {
+    @apply bg-red-50 text-red-800 border border-red-200;
+  }
+  .risk-dot-low {
+    @apply bg-emerald-500;
+  }
+  .risk-dot-medium {
+    @apply bg-amber-500;
+  }
+  .risk-dot-high {
+    @apply bg-red-500;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground));
+}
+
+/* Print styles for PDF export */
+@media print {
+  aside,
+  footer,
+  nav,
+  [data-ocid="results.new_assessment.button"],
+  [data-ocid="results.download_pdf.button"] {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  main {
+    margin: 0 !important;
+    padding: 1rem !important;
+    max-width: 100% !important;
+  }
+
+  .mt-14 {
+    margin-top: 0 !important;
+  }
+
+  /* Ensure risk badges remain colored in print */
+  .bg-red-50 {
+    background-color: #fef2f2 !important;
+  }
+  .bg-amber-50 {
+    background-color: #fffbeb !important;
+  }
+  .bg-emerald-50 {
+    background-color: #ecfdf5 !important;
+  }
+  .text-red-700 {
+    color: #b91c1c !important;
+  }
+  .text-amber-700 {
+    color: #b45309 !important;
+  }
+  .text-emerald-700 {
+    color: #047857 !important;
+  }
+
+  /* Page break hints */
+  .space-y-6 > * {
+    break-inside: avoid;
+  }
+}
